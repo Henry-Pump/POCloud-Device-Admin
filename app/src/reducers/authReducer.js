@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import {
   EMAIL_CHANGED,
   PASSWORD_CHANGED,
@@ -6,7 +5,6 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGOUT,
-  COMPANY_DATA_RECEIVED,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -52,15 +50,6 @@ export default (state = INITIAL_STATE, action) => {
 
     case LOGOUT:
       return INITIAL_STATE;
-
-    case COMPANY_DATA_RECEIVED:
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          companyName: _.keyBy(action.payload, c => c.id)[state.user.companyId].name,
-        },
-      };
 
     default:
       return state;

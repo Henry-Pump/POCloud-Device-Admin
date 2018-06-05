@@ -8,24 +8,19 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGOUT,
-  COMPANY_DATA_RECEIVED,
 } from './types';
 
 import baseURL from '../Meshify';
 
-export const emailChanged = (text) => {
-  return {
-    type: EMAIL_CHANGED,
-    payload: text,
-  };
-};
+export const emailChanged = text => ({
+  type: EMAIL_CHANGED,
+  payload: text,
+});
 
-export const passwordChanged = (text) => {
-  return {
-    type: PASSWORD_CHANGED,
-    payload: text,
-  };
-};
+export const passwordChanged = text => ({
+  type: PASSWORD_CHANGED,
+  payload: text,
+});
 
 const loginUserSuccess = (dispatch, user, authToken) => {
   dispatch({
@@ -49,15 +44,6 @@ export const loginUser = ({ email, password }) => {
         loginUserSuccess(dispatch, response.data, authToken);
       })
       .catch(() => loginUserFail(dispatch));
-
-    axios.get(`${baseURL}/companies`, { headers: { Authorization: authToken } })
-      .then((response) => {
-        dispatch({ type: COMPANY_DATA_RECEIVED, payload: response.data });
-      })
-      .catch((err) => {
-        console.log('AUTH', authToken);
-        console.log(err);
-      });
   };
 };
 

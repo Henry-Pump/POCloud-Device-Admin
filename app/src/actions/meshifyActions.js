@@ -14,11 +14,11 @@ export const getData = ({ authToken }) => {
   }
   return (dispatch) => {
     axios.get(`${baseURL}/companies`, { headers: { Authorization: authToken } })
-      .then((response) => {
-        dispatch({ type: COMPANY_DATA_RECEIVED, payload: response.data });
+      .then((companiesResponse) => {
+        dispatch({ type: COMPANY_DATA_RECEIVED, payload: companiesResponse.data });
         axios.get(`${baseURL}/devicetypes`, { headers: { Authorization: authToken } })
-          .then((response) => {
-            dispatch({ type: DEVICETYPE_DATA_RECEIVED, payload: response.data });
+          .then((devicetypesResponse) => {
+            dispatch({ type: DEVICETYPE_DATA_RECEIVED, payload: devicetypesResponse.data });
             axios.get(`${baseURL}/gateways`, { headers: { Authorization: authToken } })
               .then((gtwResponse) => {
                 dispatch({ type: GATEWAY_DATA_RECEIVED, payload: gtwResponse.data });
@@ -31,4 +31,6 @@ export const getData = ({ authToken }) => {
       });
   };
 };
+
+export const dummy = '';
 

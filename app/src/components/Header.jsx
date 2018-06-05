@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import pocloudLogo from '../assets/POCloud.png';
 
 import { logoutUser } from '../actions';
 
@@ -15,38 +16,38 @@ class Header extends Component {
     const { authToken } = this.props.auth;
     if (authToken) {
       return (
-        <nav>
-          <div className="nav-wrapper">
-            <ul className="right">
-              <li>
-                <button
-                  className="btn waves-effect waves-light"
-                  onClick={this.onLogoutButtonClicked.bind(this)}
-                  style={{ marginRight: 15 }}
-                >
-                  Log Out
-                </button>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <Link to="/main">Main</Link>
-              </li>
-            </ul>
-          </div>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <span className="navbar-brand mb-0 h1">
+            <img src={pocloudLogo} className="img-fluid" alt="POCloud" style={{ maxWidth: 200 }} />
+          </span>
+
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <Link to="/main" className="nav-link">Main</Link>
+            </li>
+          </ul>
+
+          <button
+            className="btn btn-danger"
+            onClick={this.onLogoutButtonClicked.bind(this)}
+          >
+            Log Out
+          </button>
         </nav>
       );
     }
 
     return (
-      <nav>
-        <div className="nav-wrapper">
-          <ul>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-          </ul>
-        </div>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <span className="navbar-brand mb-0 h1">
+          <img src={pocloudLogo} className="img-fluid" alt="POCloud" style={{ maxWidth: 200 }} />
+        </span>
+
+        <ul className="navbar-nav mr-auto">
+          <li className="nav-item">
+            <Link to="/login" className="nav-link">Login</Link>
+          </li>
+        </ul>
       </nav>
     );
   }

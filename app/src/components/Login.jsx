@@ -4,6 +4,12 @@ import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class Login extends Component {
+  componentWillMount() {
+    if (this.props.auth.authToken) {
+      this.props.history.push('/main');
+    }
+  }
+
   onEmailChange(event) {
     this.props.emailChanged(event.target.value);
   }
@@ -19,46 +25,57 @@ class Login extends Component {
   }
 
   render() {
-    const { email, password, authToken } = this.props.auth;
-    if (authToken) {
-      this.props.history.push('/main');
-    }
+    const { email, password } = this.props.auth;
 
     return (
-      <div className="row">
-        <h1>Login</h1>
-        <form className="col s12">
-          <div className="input-field col s12">
-            <input
-              placeholder="email@email.com"
-              id="email"
-              type="email"
-              value={email}
-              onChange={this.onEmailChange.bind(this)}
-            />
-            <label htmlFor="email">Email Address</label>
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <h1>Login</h1>
+            <form>
+              <div className="form-group">
+                <label htmlFor="email">Email Address</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  aria-describedby="emailHelp"
+                  placeholder="email@website.com"
+                  value={email}
+                  onChange={this.onEmailChange.bind(this)}
+                />
+                <small 
+                  id="emailHelp" 
+                  className="form-text text-muted"
+                >
+                  Enter your POCloud login information.
+                </small>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  value={password}
+                  onChange={this.onPasswordChange.bind(this)}
+                />
+              </div>
+
+              <button
+                className="btn waves-effect waves-light"
+                type="submit"
+                name="action"
+                onClick={this.onButtonPress.bind(this)}
+              >
+              Login
+              </button>
+
+            </form>
+
           </div>
-
-          <div className="input-field col s12">
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={this.onPasswordChange.bind(this)}
-            />
-            <label htmlFor="password">Password</label>
-          </div>
-
-          <button
-            className="btn waves-effect waves-light"
-            type="submit"
-            name="action"
-            onClick={this.onButtonPress.bind(this)}
-          >
-            Submit <i className="material-icons right">send</i>
-          </button>
-        </form>
-
+        </div>
       </div>
     );
   }
