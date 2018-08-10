@@ -4,5 +4,5 @@ import MeshifyReducer from './meshifyReducer';
 
 export default combineReducers({
   auth: AuthReducer,
-  meshify: MeshifyReducer,
+  meshify: MeshifyReducer
 });

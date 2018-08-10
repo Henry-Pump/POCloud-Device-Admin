@@ -17,7 +17,7 @@ const INITIAL_STATE = {
     last: '',
     companyName: '',
   },
-  loading: false,
+  loading: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -37,7 +37,7 @@ export default (state = INITIAL_STATE, action) => {
         password: '',
         authToken: action.payload.authToken,
         user: action.payload.user,
-        loading: false,
+        loading: false
       };
 
     case LOGIN_USER_FAIL:
@@ -45,7 +45,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         error: 'Authentication failed!',
         password: '',
-        loading: false,
+        loading: false
       };
 
     case LOGOUT:
@@ -55,4 +55,3 @@ export default (state = INITIAL_STATE, action) => {
       return state;
   }
 };
-
